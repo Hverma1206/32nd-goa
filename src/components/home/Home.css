@@ -1,5 +1,5 @@
 .hero-section {
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -39,7 +39,7 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   margin: 0;
   display: flex;
-  gap: 20rem;
+  gap: 8rem;
   align-items: center;
   justify-content: center;
 }
