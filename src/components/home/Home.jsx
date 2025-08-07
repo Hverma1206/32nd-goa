@@ -11,6 +11,7 @@ const Home = () => {
   const rightTextRef = useRef(null)
   const heroSectionRef = useRef(null)
   const heroTitleRef = useRef(null)
+  const textOverlayRef = useRef(null)
 
   useEffect(() => {
     if (!leftTextRef.current || !rightTextRef.current || !heroSectionRef.current) return
@@ -20,7 +21,7 @@ const Home = () => {
       scrollTrigger: {
         trigger: heroSectionRef.current,
         start: "top top",
-        end: "bottom top",
+        end: "+=200%", // Extended to accommodate both animation phases
         scrub: 1,
         pin: true,
         markers: false // Set to true for debugging
@@ -32,7 +33,7 @@ const Home = () => {
     gsap.set(rightTextRef.current, { x: 400, opacity: 0.3 })
     gsap.set(heroTitleRef.current, { gap: "20rem" })
 
-    // Animate both texts coming together and gap decreasing
+    // Phase 1: Animate both texts coming together and gap decreasing
     tl.to([leftTextRef.current, rightTextRef.current], {
       x: 0,
       opacity: 1,
@@ -44,6 +45,19 @@ const Home = () => {
       duration: 1,
       ease: "power2.out"
     }, 0) // Start at the same time as text animation
+
+    // Phase 2: Move to top center and reduce size simultaneously
+    .to(textOverlayRef.current, {
+      y: "-35vh",
+      duration: 1,
+      ease: "none"
+    })
+    .to(heroTitleRef.current, {
+      fontSize: "3rem",
+      gap: "1rem",
+      duration: 1,
+      ease: "none"
+    }, "<") // Start at the same time as position change
 
     // Cleanup function
     return () => {
@@ -65,7 +79,7 @@ const Home = () => {
         </video>
       </div>
       
-      <div className='hero-text-overlay'>
+      <div className='hero-text-overlay' ref={textOverlayRef}>
         <h1 className='hero-title' ref={heroTitleRef}>
           <span ref={leftTextRef} className='text-left'>32ND</span>
           <span ref={rightTextRef} className='text-right'>GOA</span>
