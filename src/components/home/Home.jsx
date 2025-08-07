@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import heroVideo from '../../assets/video/hero.webm'
+import Section1 from '../section1'
 import './Home.css'
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
 const Home = () => {
   const leftTextRef = useRef(null)
@@ -12,6 +14,7 @@ const Home = () => {
   const heroSectionRef = useRef(null)
   const heroTitleRef = useRef(null)
   const textOverlayRef = useRef(null)
+  const contentSectionRef = useRef(null)
 
   useEffect(() => {
     if (!leftTextRef.current || !rightTextRef.current || !heroSectionRef.current) return
@@ -23,7 +26,15 @@ const Home = () => {
         end: "+=200%",
         scrub: 1,
         pin: true,
-        markers: false
+        markers: false,
+        onComplete: () => {
+          // Auto scroll to section1 after animation completes
+          gsap.to(window, {
+            duration: 1.5,
+            scrollTo: { y: contentSectionRef.current, offsetY: 0 },
+            ease: "power2.inOut"
+          })
+        }
       }
     })
 
@@ -60,26 +71,32 @@ const Home = () => {
   }, [])
 
   return (
-    <div className='hero-section' ref={heroSectionRef}>
-      <div className='hero-video'>
-        <video 
-           autoPlay 
-          loop 
-          muted 
-          playsInline
-        >
-          <source src={heroVideo} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+    <>
+      <div className='hero-section' ref={heroSectionRef}>
+        <div className='hero-video'>
+          <video 
+             autoPlay 
+            loop 
+            muted 
+            playsInline
+          >
+            <source src={heroVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        
+        <div className='hero-text-overlay' ref={textOverlayRef}>
+          <h1 className='hero-title' ref={heroTitleRef}>
+            <span ref={leftTextRef} className='text-left'>32ND</span>
+            <span ref={rightTextRef} className='text-right'>GOA</span>
+          </h1>
+        </div>
       </div>
       
-      <div className='hero-text-overlay' ref={textOverlayRef}>
-        <h1 className='hero-title' ref={heroTitleRef}>
-          <span ref={leftTextRef} className='text-left'>32ND</span>
-          <span ref={rightTextRef} className='text-right'>GOA</span>
-        </h1>
+      <div className='content-section' ref={contentSectionRef}>
+        <Section1 />
       </div>
-    </div>
+    </>
   )
 }
 
