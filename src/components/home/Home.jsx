@@ -16,24 +16,21 @@ const Home = () => {
   useEffect(() => {
     if (!leftTextRef.current || !rightTextRef.current || !heroSectionRef.current) return
 
-    // Create a timeline for coordinated animations
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: heroSectionRef.current,
         start: "top top",
-        end: "+=200%", // Extended to accommodate both animation phases
+        end: "+=200%",
         scrub: 1,
         pin: true,
-        markers: false // Set to true for debugging
+        markers: false
       }
     })
 
-    // Set initial positions - far apart
     gsap.set(leftTextRef.current, { x: -400, opacity: 0.3 })
     gsap.set(rightTextRef.current, { x: 400, opacity: 0.3 })
     gsap.set(heroTitleRef.current, { gap: "20rem" })
 
-    // Phase 1: Animate both texts coming together and gap decreasing
     tl.to([leftTextRef.current, rightTextRef.current], {
       x: 0,
       opacity: 1,
@@ -44,22 +41,19 @@ const Home = () => {
       gap: "2rem",
       duration: 1,
       ease: "power2.out"
-    }, 0) // Start at the same time as text animation
-
-    // Phase 2: Move to top center and reduce size simultaneously
+    }, 0)
     .to(textOverlayRef.current, {
-      y: "-35vh",
+      y: "-45vh",
       duration: 1,
       ease: "none"
     })
     .to(heroTitleRef.current, {
-      fontSize: "3rem",
-      gap: "1rem",
+      fontSize: "2rem",
+      gap: "0.65rem",
       duration: 1,
       ease: "none"
-    }, "<") // Start at the same time as position change
+    }, "<")
 
-    // Cleanup function
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill())
     }
