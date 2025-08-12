@@ -6,6 +6,7 @@ import img3 from '../../assets/img/section_1/vagator.webp'
 import img4 from '../../assets/img/section_1/anjuna.webp'
 import img5 from '../../assets/img/section_1/arambol.webp'
 import img7 from '../../assets/img/section_1/vagator_2.webp'
+import img8 from '../../assets/img/section_1/chapora.png'
 import img6 from '../../assets/img/section_1/candolim.jpg'
 
 const Section1 = () => {
@@ -68,8 +69,28 @@ const Section1 = () => {
           <div className="image-text">
             <h3 className="image-title">Candolim, Goa</h3>
             <p className="image-description">
-              India’s first multi-level beach club across ~22,580 sq.ft. offering the best of
+              India's first multi-level beach club across ~22,580 sq.ft. offering the best of
               tropical cuisine & mixology and beachside global music experiences.
+            </p>
+          </div>
+        </div>
+        <div className="image-item additional-row">
+          <img src={img7} alt="Vagator Beach 2" />
+          <div className="image-text">
+            <h3 className="image-title">Vagator Vista, Goa</h3>
+            <p className="image-description">
+              Another spectacular view of Vagator showcasing the pristine coastline and 
+              breathtaking sunset views that make this destination truly unique.
+            </p>
+          </div>
+        </div>
+        <div className="image-item additional-row">
+          <img src={img8} alt="Chapora Fort" />
+          <div className="image-text">
+            <h3 className="image-title">Chapora Fort, Goa</h3>
+            <p className="image-description">
+              Historic Chapora Fort offering panoramic views of the coastline and 
+              serving as an iconic landmark overlooking the Arabian Sea.
             </p>
           </div>
         </div>
