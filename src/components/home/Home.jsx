@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import heroVideo from '../../assets/video/hero.webm'
-import Section1 from '../section1'
+import Section1 from '../section1/section1'
 import './Home.css'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
