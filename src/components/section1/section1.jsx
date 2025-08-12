@@ -3,6 +3,10 @@ import './section1.css'
 import img1 from '../../assets/img/section_1/chapora.webp'
 import img2 from '../../assets/img/section_1/baga.webp'
 import img3 from '../../assets/img/section_1/vagator.webp'
+import img4 from '../../assets/img/section_1/anjuna.webp'
+import img5 from '../../assets/img/section_1/arambol.webp'
+import img6 from '../../assets/img/section_1/vagator_2.webp'
+import img7 from '../../assets/img/section_1/candolim.jpg'
 
 const Section1 = () => {
   return (
