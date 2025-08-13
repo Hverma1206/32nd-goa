@@ -5,6 +5,7 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import heroVideo from '../../assets/video/hero.webm'
 import Section1 from '../section1/section1'
 import './Home.css'
+import Footer from '../footer/footer'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
@@ -95,6 +96,9 @@ const Home = () => {
       
       <div className='content-section' ref={contentSectionRef}>
         <Section1 />
+      </div>
+      <div className='footer-section'>
+        <Footer />
       </div>
     </>
   )
